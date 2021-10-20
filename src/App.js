@@ -1,10 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
+import Navbar from "./components/NavBar/Navbar";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Gym Musculito</h1>
+      <Navbar />
     </div>
   );
 }
