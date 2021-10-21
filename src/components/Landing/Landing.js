@@ -1,5 +1,5 @@
 import Form from "./Form";
-export default function Paginacion(props) {
+export default function Landing(props) {
 
 
     return (
