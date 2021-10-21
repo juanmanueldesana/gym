@@ -132,7 +132,7 @@
         transition: 250ms;
     }
 
-    Button {
+    .btn-nav {
         display: none;
     }
 }
