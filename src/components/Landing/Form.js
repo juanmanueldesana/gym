@@ -73,7 +73,7 @@ export default function Form(props) {
 
                 {/* <span id="textarea-error">Por favor ingresa tu mensaje</span> */}
                 <button
-                    class="form-field"
+                    class="form-field form-btn"
                     type="submit">
                     Contactanos
                 </button>

@@ -44,12 +44,12 @@
     border: 2px solid #ffa4a4;
   }
   
-  #form-button {
+  .form-btn {
     background: #4caf50;
     color: white;
     cursor: pointer;
   }
   
-  #form-button:disabled {
+  .form-btn:disabled {
     cursor: default;
   }
