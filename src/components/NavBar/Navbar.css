@@ -1,5 +1,5 @@
 .NavbarItems {
-    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
+    background: #fff;
     height: 80px;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
 }
 
 .navbar-logo {
-    color: #fff;
+    color: rgb(0, 0, 0);
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -31,19 +31,19 @@
 }
 
 .nav-links {
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
 .nav-links:hover {
-    background-color: #6d76f7;
+    background-color: #FF5300;
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }
 
 .fa-bars {
-    color: #fff;
+    color: rgb(0, 0, 0);
 }
 
 .nav-links-mobile {
@@ -132,7 +132,7 @@
         transition: 250ms;
     }
 
-    .btn-nav {
+    .btn {
         display: none;
     }
 }
