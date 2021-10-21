@@ -10,7 +10,7 @@ export default function Form(props) {
     });
 
     const [submitted, setSubmitted] = useState(false);
-
+    const [valid, setValid] = useState(false);
     const handleFirstNameInputChange = (event) => {
         setValues({ ...values, firstName: event.target.value })
     };
@@ -27,11 +27,19 @@ export default function Form(props) {
         setValues({ ...values, message: event.target.value })
     };
 
+    const handleSubmit = event => {
+        event.preventDefault();
+        if(values.firstName && values.lastName && values.email && values.message) {
+            setValid(true)
+        }
+        setSubmitted(true)
+    }
+
     return (
         <div class="form-container">
-            <form class="register-form">
+            <form class="register-form" onSubmit={handleSubmit}>
                 <h3>Comunicate con nosotros</h3>
-                {submitted ? <div class="success-message">El mensaje se ha enviado! Nos contactaremos a la brevedad</div> : null}
+                {submitted && valid ? <div class="success-message">El mensaje se envío correctamente! Nos contactaremos a la brevedad</div> : null}
                 <input
                     onChange={handleFirstNameInputChange}
                     value={values.firstName}
@@ -41,7 +49,7 @@ export default function Form(props) {
                     placeholder="Nombre"
                     name="firstName"
                 />
-                {/* <span id="first-name-error">Por favor ingresa un nombre</span> */}
+                {submitted && !values.firstName ? <span id="first-name-error">Por favor ingresa un nombre</span> : null}
                 <input
                     onChange={handleLastNameInputChange}
                     value={values.lastName}
@@ -51,7 +59,7 @@ export default function Form(props) {
                     placeholder="Apellido"
                     name="lastName"
                 />
-                {/* <span id="last-name-error">Por favor ingresa un apellido</span> */}
+                {submitted && !values.lastName ? <span id="last-name-error">Por favor ingresa un apellido</span> : null}
                 <input
                     onChange={handleEmailInputChange}
                     value={values.email}
@@ -61,7 +69,7 @@ export default function Form(props) {
                     placeholder="Email"
                     name="email"
                 />
-                {/* <span id="email-error">Por favor ingresa una direccion de email</span> */}
+                {submitted && !values.email ? <span id="email-error">Por favor ingresa una direccion de email</span> : null}
                 <textarea
                     onChange={handleMessageInputChange}
                     value={values.message}
@@ -71,8 +79,9 @@ export default function Form(props) {
                     placeholder="Dejanos tu mensaje"
                     name="message" />
 
-                {/* <span id="textarea-error">Por favor ingresa tu mensaje</span> */}
+                {submitted && !values.message ? <span id="textarea-error">Por favor ingresa un mensaje</span> : null}
                 <button
+                    
                     class="form-field form-btn"
                     type="submit">
                     Contactanos
