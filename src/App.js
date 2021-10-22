@@ -10,12 +10,12 @@ export default function App() {
     <Router>
     <div className="App">
       <Navbar />
-      <Switch>
-        <Route path="/">
-          <Landing />
-        </Route>
+      <Switch>        
         <Route path="/Login">
           <Login />
+        </Route>
+        <Route path="/">
+          <Landing />
         </Route>
       </Switch>
     </div>
