@@ -1,12 +1,12 @@
 export const MenuItems = [
     {
         title: 'INICIO',
-        url: '#',
+        url: 'localhost:3000',
         cName: 'nav-links'
     },
     {
         title: 'SEDES',
-        url: '#',
+        url: 'https://www.google.com',
         cName: 'nav-links'
     },
     {
