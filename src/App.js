@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
 import Landing from "./components/Landing/Landing";
+import Login from "./components/Login/Login"
 import './App.css';
 
 export default function App() {
@@ -12,6 +13,9 @@ export default function App() {
       <Switch>
         <Route path="/">
           <Landing />
+        </Route>
+        <Route path="/Login">
+          <Login />
         </Route>
       </Switch>
     </div>
