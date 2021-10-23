@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+    z-index: 1000;
 }
 
 .navbar-logo {
@@ -72,7 +73,7 @@
     }
 
     .nav-menu.active {
-        background: #6668f4;
+        background: #FF5300;
         left: 0;
         opacity: 1;
         transition: all 0.5s ease;
@@ -87,7 +88,7 @@
     }
 
     .nav-links:hover {
-        background-color: #7577fa;
+        background-color: #ffffff;
         border-radius: 0;
     }
 
@@ -120,15 +121,15 @@
         margin: 2rem auto;
         border-radius: 4px;
         width: 80%;
-        background: #4ad9e4;
+        background: #ffffff;
         text-decoration: none;
-        color: #fff;
+        color: rgb(0, 0, 0);
         font-size: 1.5rem;
     }
 
     .nav-links-mobile:hover {
         background: #fff;
-        color: #6568F4;
+        color: #000000;
         transition: 250ms;
     }
 
