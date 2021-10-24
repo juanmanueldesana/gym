@@ -39,7 +39,7 @@ export default function Form(props) {
 
     return (
         <div class="form-container">
-            <form class="register-form" onSubmit={handleSubmit}>
+            <form className="register-form" onSubmit={handleSubmit}>
                 <h3 className="form-h3">Comunicate con nosotros</h3>
                 {submitted && valid ? <div class="success-message">El mensaje se envío correctamente! Nos contactaremos a la brevedad</div> : null}
                 <input
