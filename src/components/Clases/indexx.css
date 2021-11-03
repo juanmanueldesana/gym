@@ -81,11 +81,10 @@ body {
     align-items: flex-end;
 }*/
 
-/*.card-container-custom {
+.card-container-custom {
     margin-left: 24px;
-}*/
-/*
+}
 .all-cards {
     display: flex;
     flex-wrap: wrap;
-}*/
+}
