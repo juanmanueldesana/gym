@@ -1,10 +1,13 @@
+.land-container{
+    margin: 1em 0;
+}
 .land-h1{
     color: #000;
     font-size: 3em;
     text-transform: uppercase;
     text-align: center;
     font: bold;
-    margin: 1em;
+    margin-bottom: 1em;
 }
 
 .land-p{

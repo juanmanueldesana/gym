@@ -2,7 +2,10 @@ import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
 import Landing from "./components/Landing/Landing";
-import Carousel from "./components/Carousel/Carousel"
+import Login from "./components/Login/Login"
+import Clases from "./components/Clases/Clases"
+import Staff from "./components/Staff/Staff"
+
 import './App.css';
 
 export default function App() {
@@ -10,8 +13,16 @@ export default function App() {
     <Router>
     <div className="App">
       <Navbar />
-      <Carousel />
-      <Switch>
+      <Switch>        
+        <Route path="/Login">
+          <Login />
+        </Route>
+        <Route path="/Clases">
+          <Clases />
+        </Route>
+        <Route path="/Staff">
+          <Staff />
+        </Route>
         <Route path="/">
           <Landing />
         </Route>

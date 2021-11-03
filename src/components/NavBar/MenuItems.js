@@ -5,8 +5,8 @@ export const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'SEDES',
-        url: 'https://www.google.com',
+        title: 'STAFF',
+        url: '#',
         cName: 'nav-links'
     },
     {

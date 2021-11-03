@@ -1,7 +1,7 @@
 .form-container {
     width: 360px;
     background-color: white;
-    margin: auto;
+    margin: 2em auto 1em;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     padding: 10px;
   }
@@ -28,6 +28,11 @@
     font-family: "Roboto", sans-serif;
   }
   
+  .form-h3{
+    text-transform: uppercase;
+    text-align: center;
+  }
+
   span {
     font-family: "Roboto", sans-serif;
     font-size: 14px;
@@ -39,15 +44,21 @@
     background: #f2f2f2;
   }
   
+  textarea{
+    height: 8em;
+    resize: none;
+  }
+
   .error {
     border-style: solid;
     border: 2px solid #ffa4a4;
   }
   
   .form-btn {
-    background: #4caf50;
-    color: white;
+    background: var(--primary);
+    color: #000;
     cursor: pointer;
+    font-weight: bold;
   }
   
   .form-btn:disabled {
