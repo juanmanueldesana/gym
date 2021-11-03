@@ -1,0 +1,9 @@
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    float: none;
+    justify-items: center;
+    align-items: center;
+    }
