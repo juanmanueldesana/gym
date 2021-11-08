@@ -28,7 +28,7 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                <Button>LOGIN</Button>
+                <Button><a style={{ textDecoration: "none", color: "black" }} href="/Login">LOGIN</a></Button>
             </nav>
         )
     }
