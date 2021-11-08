@@ -18,7 +18,7 @@ const Footer = () => {
 				<div id="footer-info" className="row pb-4">
 					<div className="col-6 col-md-3 pt-5">
 						<h4 style={{ color: '#959595' }}>ACERCA DE</h4>
-						<a href="/faq" style={{ color: '#efefef', textDecoration: 'none' }}>
+						<a href="/Faq" style={{ color: '#efefef', textDecoration: 'none' }}>
 							<h6 style={{ color: '#efefef' }}>Preguntas frecuentes</h6>
 						</a>
 						<a href="mailto:desanajm@gmail.com" style={{ color: '#efefef', textDecoration: 'none' }}>
@@ -29,10 +29,10 @@ const Footer = () => {
 					<div className="col-6 col-md-3 pt-5">
 						<h4 style={{ color: '#efefef' }}>SECCIONES</h4>
 
-						<a href="/usuario/perfilUsuario" style={{ color: '#efefef', textDecoration: 'none' }}>
+						<a href="/Clases" style={{ color: '#efefef', textDecoration: 'none' }}>
 							<h6 style={{ color: '#efefef' }}>Clases</h6>
 						</a>
-                        <a href="/usuario/perfilUsuario" style={{ color: '#efefef', textDecoration: 'none' }}>
+                        <a href="/Staff" style={{ color: '#efefef', textDecoration: 'none' }}>
 							<h6 style={{ color: '#efefef' }}>Staff</h6>
 						</a>
 					</div>
