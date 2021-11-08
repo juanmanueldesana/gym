@@ -15,7 +15,7 @@ const Footer = () => {
 		<div className="footer-links">
 
 			<div className="container">
-				<div id="footer-info" className="row pb-4">
+				<div id="footer-info" className="row pb-5">
 					<div className="col-6 col-md-3 pt-5">
 						<h4 style={{ color: '#959595' }}>ACERCA DE</h4>
 						<a href="/Faq" style={{ color: '#efefef', textDecoration: 'none' }}>
@@ -57,6 +57,12 @@ const Footer = () => {
 						<h4 style={{ color: '#959595' }}>COLABORA</h4>
 						<a href="https://www.austral.edu.ar/en/" style={{ color: '#efefef', textDecoration: 'none' }}>
 							<h6 style={{ color: '#efefef' }}>Universidad Austral</h6>
+						</a>
+					</div>
+					<div style={{ textAlign: "center", marginTop: "25px"}}>
+						<h4 style={{ color: '#959595' }}>ENCONTRANOS</h4>
+						<a href="https://goo.gl/maps/SE9mzZoANDhop8Xy6" style={{ color: '#efefef', textDecoration: 'none' }}>
+							<h6 style={{ color: '#efefef' }}>Bv. Oroño 1554</h6>
 						</a>
 					</div>
 				</div>
