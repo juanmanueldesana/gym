@@ -83,8 +83,8 @@ body {
 }*/
 
 .card-container-custom {
-  margin-left: 24px;
   width: 250px;
+  margin: .5em;
 }
 .all-cards {
   display: flex;
