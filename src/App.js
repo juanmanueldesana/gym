@@ -5,6 +5,8 @@ import Landing from "./components/Landing/Landing";
 import Login from "./components/Login/Login"
 import Clases from "./components/Clases/Clases"
 import Staff from "./components/Staff/Staff"
+import Separador from "./components/Separador/Separador";
+import Footer from "./components/Footer/Footer"
 
 import './App.css';
 
@@ -27,6 +29,8 @@ export default function App() {
           <Landing />
         </Route>
       </Switch>
+      <Separador/>
+      <Footer />
     </div>
     </Router>
   );

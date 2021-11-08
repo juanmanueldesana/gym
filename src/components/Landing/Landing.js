@@ -1,9 +1,7 @@
 import Form from "./Form";
 import './Landing.css'
 import Carousel from "../Carousel/Carousel"
-import Footer from "../Footer/Footer"
 import StaffCard from "../StaffCard/StaffCard";
-import Separador from "../Separador/Separador";
 export default function Landing(props) {
 
 
@@ -18,8 +16,6 @@ export default function Landing(props) {
             {/*<Slide />*/}
             <StaffCard/>
             <Form />
-            <Separador/>
-            <Footer />
         </>
     )
 }
