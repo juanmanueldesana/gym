@@ -7,7 +7,7 @@ import Clases from "./components/Clases/Clases"
 import Staff from "./components/Staff/Staff"
 import Separador from "./components/Separador/Separador";
 import Footer from "./components/Footer/Footer"
-
+import WapButton from "./components/WapButton/WapButton"
 import './App.css';
 
 export default function App() {
@@ -29,6 +29,7 @@ export default function App() {
           <Landing />
         </Route>
       </Switch>
+      <WapButton/>
       <Separador/>
       <Footer />
     </div>
