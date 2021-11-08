@@ -15,11 +15,6 @@ export const MenuItems = [
         cName: 'nav-links'
     },
     {
-        title: 'CONTACTO',
-        url: '#',
-        cName: 'nav-links'
-    },
-    {
         title: 'LOGIN/REGISTRO',
         url: '/Login',
         cName: 'nav-links-mobile'
