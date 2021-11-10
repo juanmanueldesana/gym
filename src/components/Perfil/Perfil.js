@@ -99,9 +99,9 @@ export default function Perfil() {
         </div>
         <div className="w-full mb-10 text-center md:w-2/5"></div>
         <div className="w-full mb-10 text-center md:w-2/5">
-{/*           <button type="submit" className="orange-pill-button">
+          <button type="submit" className="orange-pill-button">
             Guardar
-          </button> */}
+          </button>
         </div>
           <button style={{ marginBottom: "10px" }} type="button" className="orange-pill-button">
             Cambiar contaseña
