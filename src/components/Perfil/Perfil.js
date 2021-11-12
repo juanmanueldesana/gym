@@ -2,6 +2,9 @@ import React from "react";
 import "./Perfil.css";
 
 export default function Perfil() {
+
+ 
+
   return (
     <div>
       <h1 className="h1-profile"><a style={{ textDecoration: "none", color: "black" }} href="/Perfil">Perfil</a></h1>
