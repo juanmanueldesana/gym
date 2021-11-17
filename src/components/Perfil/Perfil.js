@@ -29,7 +29,7 @@ const [profile, setProfile] = useState({});
                 type="text"
                 className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                 name="nombre"
-                value={profile.first_name}
+                defaultValue={profile.first_name}
               />
             </label>
           </div>
@@ -46,7 +46,7 @@ const [profile, setProfile] = useState({});
                 type="text"
                 className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                 name="apellidoPaterno"
-                value={profile.last_name}
+                defaultValue={profile.last_name}
               />
             </label>
           </div>
@@ -81,12 +81,11 @@ const [profile, setProfile] = useState({});
               <span className="input-title">
                 Correo electronico 
               </span><br></br>
-              <input disabled
+              <input
                 type="text"
-                disabled=""
                 className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                 name="mail"
-                value={profile.email}
+                defaultValue={profile.email}
               />
             </label>
           </div>
