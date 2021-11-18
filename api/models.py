@@ -9,7 +9,8 @@ class Clase(models.Model):
 class Rutina(models.Model):
     athlete = models.ForeignKey(
         'auth.user',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='rutinas'
     )
     staff = models.CharField( max_length=30)
     itIsFinished = models.BooleanField(default=False)
