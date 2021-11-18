@@ -1,5 +1,5 @@
-
-
+import React, { useState, useEffect } from 'react';
+import { httpGet } from '../utils/httpFunctions';
 import './Clases.css';
 import zumbaimg from "./Images/zumba.jpg"
 import bodycombatimg from "./Images/bodycombat.jpg"
@@ -15,6 +15,21 @@ import yogaimg from "./Images/yoga.jpg"
 import musculacionimg from "./Images/musculacion.jpg"
 
 export default function Clases(props) {
+
+const [clases1, setClases] = useState({});
+
+const axios = require('axios');
+
+/* useEffect(() => {
+    httpGet("api/clases/").then(response => setClases(response.data))
+}, []); */
+
+useEffect(() => {
+    axios.get("http://localhost:8000/api/clases/").then(response => setClases(response.data))
+}, []); 
+
+console.log(clases1);
+
     const clases = [
         {name: "Zumba", horario: "Lunes- Miércoles y Viernes: 10:00 hs.", foto: zumbaimg},
         {name: "Body-Combat", horario: "Lunes- Miércoles y Viernes: 12:00 hs.", foto: bodycombatimg},
@@ -38,16 +53,14 @@ export default function Clases(props) {
             </div>
             <div className="all-cards">
                 {
-                    clases.map((clase)=> {
+                    clases1.map((clase)=> {
                         return (
                             <div className={"card-container-custom"}>
                                 <div className="card">
-                                    <img src={clase.foto} className="card-img-top" alt="..."/>
+                                    <img src={clase.img} className="card-img-top" alt="..."/>
                                     <div className="card-body">
                                         <h5 className="card-title">{clase.name}</h5>
-                                        <p className="card-text">{clase.name} es la disciplina del presente. Diversión, salud y estar en forma,
-                                            TODO combinado con la mejor de las ondas.</p>
-                                        <a href="#" className="btn btn-primary">{clase.horario}</a>
+                                        <p className="card-text">{clase.description}</p>
                                     </div>
                                 </div>
                             </div>
