@@ -10,6 +10,7 @@ import Rutina from "./components/Rutina/Rutina"
 import Separador from "./components/Separador/Separador";
 import Footer from "./components/Footer/Footer"
 import WapButton from "./components/WapButton/WapButton"
+import AuthRoute from './components/AuthRoute';
 import './App.css';
 
 export default function App() {
@@ -28,7 +29,9 @@ export default function App() {
           <Staff />
         </Route>
         <Route path="/Perfil">
+        <AuthRoute>
           <Perfil />
+        </AuthRoute>
         </Route>
         <Route path="/Rutina">
           <Rutina />

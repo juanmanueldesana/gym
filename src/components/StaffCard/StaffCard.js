@@ -1,9 +1,18 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import './StaffCard.css'
+import { httpGet } from "../utils/httpFunctions";
+
+const axios = require('axios');
 
 
 const StaffCard = () => {
+
+    const [staff, setStaff] = React.useState([]);
+
+/*     useEffect(() => {
+      httpGet */
+
   return (
     <div className="parent">
       <Card style={{ width: "14rem" }}>

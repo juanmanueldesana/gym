@@ -3,9 +3,12 @@ import { MenuItems } from "./MenuItems"
 import { Button } from "../Button"
 import './Navbar.css'
 
+const isLoggedIn = localStorage.getItem('token')
+
 class Navbar extends Component {
     state = { clicked: false }
 
+    
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked })
     }
@@ -28,7 +31,7 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                <Button><a style={{ textDecoration: "none", color: "black" }} href="/Login">LOGIN</a></Button>
+                {isLoggedIn != null ?<Button><a style={{ textDecoration: "none", color: "black" }} href="/Perfil">PERFIL</a></Button> : <Button><a style={{ textDecoration: "none", color: "black" }} href="/Login">LOGIN</a></Button>}
             </nav>
         )
     }
