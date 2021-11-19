@@ -13,6 +13,18 @@ const updateUser = ()=> {
 
 const [profile, setProfile] = useState({});
 
+const handleFirstNameChange = (event) => {
+  setProfile({ ...profile, first_name: event.target.value })
+};
+
+const handleLastNameChange = (event) => {
+  setProfile({ ...profile, last_name: event.target.value })
+};
+
+const handleEmailChange = (event) => {
+  setProfile({ ...profile, email: event.target.value })
+};
+
   useEffect(() => {
     httpGet("api/me").then(response => setProfile(response.data))
   }, [])
@@ -36,6 +48,7 @@ const [profile, setProfile] = useState({});
                 className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                 name="nombre"
                 defaultValue={profile.first_name}
+                onChange={handleFirstNameChange}
               />
             </label>
           </div>
@@ -53,6 +66,7 @@ const [profile, setProfile] = useState({});
                 className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                 name="apellidoPaterno"
                 defaultValue={profile.last_name}
+                onChange={handleLastNameChange}
               />
             </label>
           </div>
@@ -92,6 +106,7 @@ const [profile, setProfile] = useState({});
                 className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                 name="mail"
                 defaultValue={profile.email}
+                onChange={handleEmailChange}
               />
             </label>
           </div>
