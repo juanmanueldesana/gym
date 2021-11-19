@@ -6,6 +6,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 # Create your views here.
 from rest_framework import generics, viewsets
+from rest_framework.views import APIView
+from rest_framework import authentication, permissions
+from django.contrib.auth.models import User
 
 from api.models import Clase, Rutina
 from api.serializers import ClaseSerializer, RutinaSerializer, RegisterSerializer, MeSerializer
@@ -33,3 +36,11 @@ class RegisterView(generics.CreateAPIView):
 @permission_classes([IsAuthenticated])
 def me(request):
     return Response(MeSerializer(request.user).data, 200)
+
+#@permission_classes([permissions.IsAdminUser])
+class ListUsers(APIView):
+   
+
+    def get(self, request, format=None):
+        usernames = [user.first_name+' '+user.last_name for user in User.objects.filter(is_staff=True).filter(is_superuser=False)]
+        return Response(usernames)
