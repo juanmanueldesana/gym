@@ -1,9 +1,20 @@
-import React from "react";
+import React,  { useEffect, useState } from "react";
 import "./Rutina.css";
+import { httpGet, httpPatch, httpDelete } from "../utils/httpFunctions";
+
 
 export default function Rutina() {
 
+    const [profile, setProfile] = useState({});
 
+    const [rutina, setRutina] = useState({});
+
+    useEffect(() => {
+        httpGet("api/me").then(response => setProfile(response.data)).then( profile.is_staff != true ? httpGet("api/rutinas/?athlete_id="+profile.id)
+        .then(response => setRutina(response.data)): null);   
+      }, [])
+
+      console.log(rutina);
 
     return (
         <div>
@@ -15,18 +26,24 @@ export default function Rutina() {
 
                 <div className="form-group">
 
-                    <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            PROFESOR
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" href="#">Carolina</a>
-                            <a className="dropdown-item" href="#">Juan Carlos</a>
-                            <a className="dropdown-item" href="#">Eugenio</a>
+                <div className="input-profile">
+                        <div className="w-full py-5 ">
+                            <label
+                                className="material-input border-gray-400
+    material-input-focused
+    "
+                            >
+                                <span className="input-title">ID Alumno</span><br></br>
+                                <input
+                                    type="text"
+                                    className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
+                                    name="exercise1"
+                                    defaultValue={profile.id}
+                                    
+                                />
+                            </label>
                         </div>
                     </div>
-
 
                     <div className="input-profile">
                         <div className="w-full py-5 ">
@@ -40,6 +57,7 @@ export default function Rutina() {
                                     type="text"
                                     className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                                     name="exercise1"
+                                    defaultValue={rutina.excercise1}
                                 />
                             </label>
                         </div>
@@ -57,6 +75,7 @@ export default function Rutina() {
                                     type="text"
                                     className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                                     name="exercise2"
+                                    defaultValue={rutina.excercise2}
                                 />
                             </label>
                         </div>
@@ -75,6 +94,7 @@ export default function Rutina() {
                                     type="text"
                                     className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                                     name="exercise3"
+                                    defaultValue={rutina.excercise3}
                                 />
                             </label>
                         </div>
@@ -91,6 +111,7 @@ export default function Rutina() {
                                     type="text"
                                     className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                                     name="exercise4"
+                                    defaultValue={rutina.excercise4}
                                 />
                             </label>
                         </div>
@@ -107,25 +128,7 @@ export default function Rutina() {
                                        type="text"
                                        className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                                        name="exercise5"
-                                />
-                            </label>
-                        </div>
-                    </div>
-                    <div className="input-profile">
-                        <div className="w-full py-5 ">
-                            <label
-                                className="material-input border-gray-400
-    material-input-focused
-    "
-                            >
-              <span className="input-title">
-                EJERCICIO 6
-              </span><br></br>
-                                <input 
-                                       type="text"
-                                       className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
-                                       name="exercise6"
-                                       
+                                       defaultValue={rutina.excercise5}
                                 />
                             </label>
                         </div>
@@ -133,9 +136,26 @@ export default function Rutina() {
 
                     <div className="w-full mb-10 text-center md:w-2/5"></div>
                     <div className="w-full mb-10 text-center md:w-2/5">
+
+                    {
+                        profile.is_staff == true ?(
+                            <div>
                         <button type="submit" className="orange-pill-button">
-                            Guardar
+                            Crear
                         </button>
+                        <button type="submit" className="orange-pill-button">
+                            Modificar
+                        </button>
+                        <button type="submit" className="orange-pill-button">
+                            Buscar
+                        </button>
+                        <button type="submit" className="orange-pill-button">
+                            Eliminar
+                        </button>
+                        </div>
+                        ): null
+                    }
+
                     </div>
 
                 </div>
