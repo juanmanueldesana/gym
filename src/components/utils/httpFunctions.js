@@ -15,3 +15,10 @@ export const httpPost = async (endpoint, data) => {
     }
     })
 }
+
+export const httpPatch = async (endpoint, data) => {
+    return axios.patch(baseUrl + endpoint, data, {headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+    })
+}

@@ -1,10 +1,16 @@
 import React,  { useEffect, useState } from "react";
 import "./Perfil.css";
-import { httpGet } from "../utils/httpFunctions";
+import { httpGet, httpPatch } from "../utils/httpFunctions";
 
 const axios = require("axios");
 
 export default function Perfil() {
+
+const updateUser = ()=> {
+    
+    httpPatch("api/meUpdate/", profile)
+}
+
 const [profile, setProfile] = useState({});
 
   useEffect(() => {
@@ -92,13 +98,13 @@ const [profile, setProfile] = useState({});
         </div>
         <div className="w-full mb-10 text-center md:w-2/5"></div>
         <div className="w-full mb-10 text-center md:w-2/5">
-          <button type="submit" className="orange-pill-button">
+          <button type="submit" className="orange-pill-button" onClick={updateUser}>
             Guardar
           </button>
         </div>
-          <button style={{ marginBottom: "10px" }} type="button" className="orange-pill-button">
+          {/* <button style={{ marginBottom: "10px" }} type="button" className="orange-pill-button">
             Cambiar contaseña
-          </button>
+          </button> */}
         </div>
       </form>
     </div>
