@@ -20,10 +20,6 @@ const [clases1, setClases] = useState({});
 
 const axios = require('axios');
 
-/* useEffect(() => {
-    httpGet("api/clases/").then(response => setClases(response.data))
-}, []); */
-
 useEffect(() => {
     axios.get("http://localhost:8000/api/clases/").then(response => setClases(response.data))
 }, []); 
@@ -57,8 +53,8 @@ console.log(clases1);
                         return (
                             <div className={"card-container-custom"}>
                                 <div className="card">
-                                    <img src={clase.img} className="card-img-top" alt="..."/>
-                                    <div className="card-body">
+{/*                                     <img src={clase.foto} className="card-img-top" alt="..."/>
+ */}                                    <div className="card-body">
                                         <h5 className="card-title">{clase.name}</h5>
                                         <p className="card-text">{clase.description}</p>
                                     </div>
