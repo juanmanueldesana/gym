@@ -12,7 +12,7 @@ from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 
 from api.models import Clase, Rutina
-from api.serializers import ClaseSerializer, RutinaSerializer, RegisterSerializer, MeSerializer
+from api.serializers import ClaseSerializer, RutinaSerializer, RegisterSerializer, MeSerializer, MeUpdateSerializer
 
 class ClaseViewSet(viewsets.ModelViewSet):
     serializer_class = ClaseSerializer
@@ -51,7 +51,7 @@ def meUpdate(request):
     user = request.user
     data = request.data
     user = get_user_model().objects.filter(pk=user.id).first()
-    user_serializer = MeSerializer(user, data=data, partial=True)
+    user_serializer = MeUpdateSerializer(user, data=data, partial=True)
     if user_serializer.is_valid():
         user_serializer.save()
     return Response(user_serializer.data, 200)
