@@ -1,5 +1,5 @@
 from rest_framework import routers
-from api.views import ClaseViewSet, RegisterView, RutinaViewSet, me, ListUsers
+from api.views import ClaseViewSet, RegisterView, RutinaViewSet, me, ListUsers, meDelete, meUpdate
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -16,5 +16,7 @@ urlpatterns = [
     path('login/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', RegisterView.as_view()),
     path('users/', ListUsers.as_view()),
-    path('me/', me)
+    path('me/', me),
+    path("meUpdate/", meUpdate),
+    path("meDelete/", meDelete)
 ]

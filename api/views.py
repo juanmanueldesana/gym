@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db.models import query
 from django.db.models.query import QuerySet
 from django.shortcuts import render
@@ -32,15 +33,33 @@ class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def me(request):
-    return Response(MeSerializer(request.user).data, 200)
-
-#@permission_classes([permissions.IsAdminUser])
 class ListUsers(APIView):
    
 
     def get(self, request, format=None):
         usernames = [user.first_name+' '+user.last_name for user in User.objects.filter(is_staff=True).filter(is_superuser=False)]
         return Response(usernames)
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def me(request):
+    return Response(MeSerializer(request.user).data, 200)
+
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def meUpdate(request):
+    user = request.user
+    data = request.data
+    user = get_user_model().objects.filter(pk=user.id).first()
+    user_serializer = MeSerializer(user, data=data, partial=True)
+    if user_serializer.is_valid():
+        user_serializer.save()
+    return Response(user_serializer.data, 200)
+
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def meDelete(request):
+    user = request.user
+    userDB = get_user_model().objects.filter(pk=user.id).first()
+    userDB.delete()
+    return Response("Eliminado", 200)
