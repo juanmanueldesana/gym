@@ -6,6 +6,7 @@ import Login from "./components/Login/Login"
 import Clases from "./components/Clases/Clases"
 import Staff from "./components/Staff/Staff"
 import Perfil from "./components/Perfil/Perfil"
+import Rutina from "./components/Rutina/Rutina"
 import Separador from "./components/Separador/Separador";
 import Footer from "./components/Footer/Footer"
 import WapButton from "./components/WapButton/WapButton"
@@ -31,6 +32,9 @@ export default function App() {
         <AuthRoute>
           <Perfil />
         </AuthRoute>
+        </Route>
+        <Route path="/Rutina">
+          <Rutina />
         </Route>
         <Route path="/">
           <Landing />

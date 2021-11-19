@@ -22,3 +22,10 @@ export const httpPatch = async (endpoint, data) => {
     }
     })
 }
+
+export const httpDelete = async (endpoint, data) => {
+    return axios.delete(baseUrl + endpoint, data, {headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+    })
+}

@@ -1,6 +1,6 @@
 import React,  { useEffect, useState } from "react";
 import "./Perfil.css";
-import { httpGet, httpPatch } from "../utils/httpFunctions";
+import { httpGet, httpPatch, httpDelete } from "../utils/httpFunctions";
 
 const axios = require("axios");
 
@@ -9,6 +9,14 @@ export default function Perfil() {
 const updateUser = ()=> {
     
     httpPatch("api/meUpdate/", profile)
+}
+
+/* const deleteUser = ()=> {  
+    httpDelete("api/meDelete/")
+} */
+
+const deleteUser = () => {
+    axios.delete("http://localhost:8000/api/meDelete/")
 }
 
 const [profile, setProfile] = useState({});
@@ -117,9 +125,9 @@ const handleEmailChange = (event) => {
             Guardar
           </button>
         </div>
-          {/* <button style={{ marginBottom: "10px" }} type="button" className="orange-pill-button">
-            Cambiar contaseña
-          </button> */}
+           <button onClick={deleteUser} style={{ marginBottom: "10px", display: "flex", justifyContent: "end" }} type="button" className="orange-pill-button">
+            Eliminar usuario
+          </button> 
         </div>
       </form>
     </div>
