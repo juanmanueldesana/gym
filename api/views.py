@@ -3,7 +3,7 @@ from django.db.models import query
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 # Create your views here.
 from rest_framework import generics, viewsets
@@ -29,6 +29,7 @@ class RutinaViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(athlete_id=athlete_id)
         return queryset
 
+@permission_classes([IsAdminUser])
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 

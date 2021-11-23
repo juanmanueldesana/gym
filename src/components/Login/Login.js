@@ -20,7 +20,7 @@ export default function Login() {
       e.preventDefault();
       httpPost('api/login/', {username: username, password: password}).then((res) => {
         localStorage.setItem('token', res.data.access);
-        history.push('/');
+        history.push('/Perfil');
         })
     };
 
