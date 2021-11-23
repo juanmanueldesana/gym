@@ -13,8 +13,8 @@ export default function Rutina() {
   const [rutina, setRutina] = useState({});
 
   const handleIdChange = (event) => {
-    setRutina({ ...rutina, athlete_id: event.target.value });
-    console.log(rutina.athlete_id);
+    setRutina({ ...rutina, athlete: event.target.value });
+    console.log(rutina.athlete);
   };
 
   const handleExercise1Change = (event) => {
@@ -39,25 +39,29 @@ export default function Rutina() {
 
   const crearRutina = (e) => {
     e.preventDefault();
+    console.log(rutina)
     httpPost("api/rutinas/", {
       exercise1: rutina.exercise1,
       exercise2: rutina.exercise2,
       exercise3: rutina.exercise3,
       exercise4: rutina.exercise4,
       exercise5: rutina.exercise5,
-      athlete: rutina.athlete_id,
-    }).then((res) => {});
+      athlete: rutina.athlete,
+    }).then(() => {});
   };
 
   const modificarRutina = (e) => {
     e.preventDefault();
+    console.log(rutina)
     httpPatch("api/rutinas/" + rutina.id + "/", rutina);
   };
 
   const getRutina = (e) => {
-    e.preventDefault();
-    httpGet("api/rutinas/?athlete_id=" + rutina.athlete_id).then((res) =>
-      setRutina(res.data.length > 0 ? res.data[0] : {})
+    e?.preventDefault();
+    httpGet("api/rutinas/?athlete=" + rutina.athlete).then((res) =>{
+      console.log(res.data)
+      setRutina(res.data.length > 0 ? res.data[0] : {})}
+      
     ).catch((e)=>{
       console.log(e)
     })};
@@ -65,7 +69,8 @@ export default function Rutina() {
 
   const deleteRutina = (e) => {
     e.preventDefault();
-    httpDelete("api/rutinas/")
+    httpDelete("api/rutinas/"+rutina.id+'/')
+    console.log(rutina)
   }
 
   const test = (e) => {
@@ -77,7 +82,7 @@ export default function Rutina() {
     httpGet("api/me").then(({data}) => {
       setProfile(data);
       if (!data.is_staff)
-        httpGet("api/rutinas/?athlete_id=" + data.id).then((res) =>
+        httpGet("api/rutinas/?athlete=" + data.id).then((res) =>
           setRutina(res.data.length > 0 ? res.data[0] : {})
         );
     });
@@ -112,7 +117,7 @@ export default function Rutina() {
                   name="exercise1"
                   /* defaultValue={profile.is_staff == false ? profile.id : null} */
                   onChange={handleIdChange}
-                  defaultValue={rutina.athlete_id}
+                  defaultValue={rutina.athlete}
                 />
               </label>
             </div>

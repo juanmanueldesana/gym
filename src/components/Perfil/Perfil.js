@@ -16,7 +16,7 @@ const updateUser = ()=> {
 } */
 
 const deleteUser = () => {
-  httpDelete("api/meDelete/")
+  httpDelete("api/meDelete/"+profile.id+ "/")
 }
 
 const [profile, setProfile] = useState({});
