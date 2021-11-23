@@ -16,7 +16,7 @@ const updateUser = ()=> {
 } */
 
 const deleteUser = () => {
-    axios.delete("http://localhost:8000/api/meDelete/")
+  httpDelete("api/meDelete/")
 }
 
 const [profile, setProfile] = useState({});
