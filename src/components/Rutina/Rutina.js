@@ -9,6 +9,7 @@ export default function Rutina() {
 
   const handleIdChange = (event) => {
     setRutina({ ...rutina, athlete_id: event.target.value });
+    console.log(rutina.athlete_id)
   };
 
   const handleExercise1Change = (event) => {
@@ -37,6 +38,16 @@ export default function Rutina() {
       })
   };
 
+  const modificarRutina = (e) => {
+    e.preventDefault();
+    httpPatch('api/rutinas/'+rutina.id+'/', rutina)
+  };
+
+  const getRutina = (e) => {
+    e.preventDefault();
+    httpGet("api/rutinas/?athlete_id=" + rutina.athlete_id).then((res) => setRutina(res.data[0]))
+  };
+
   const test = (e) => {
     e.preventDefault();
     console.log(rutina)
@@ -45,15 +56,15 @@ export default function Rutina() {
   useEffect(() => {
     httpGet("api/me")
       .then((response) => setProfile(response.data))
-      .then(
-        profile.is_staff != true
+      .then(        
+        profile.is_staff == false
           ? httpGet("api/rutinas/?athlete_id=" + profile.id).then((res) =>
-              setRutina(res.data)
+              setRutina(res.data[0])
             )
           : ''
+
       );
   }, []);
-
 
   return (
     <div>
@@ -82,8 +93,8 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise1"
-                  defaultValue={profile.is_staff != true ? profile.id : null}
-                  onChange={handleIdChange}
+                  /* defaultValue={profile.is_staff == false ? profile.id : null} */
+                  onKeyUp={handleIdChange}
                 />
               </label>
             </div>
@@ -103,6 +114,7 @@ export default function Rutina() {
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise1"
                   defaultValue={rutina.exercise1}
+
                   onChange={handleExercise1Change}
                 />
               </label>
@@ -194,10 +206,10 @@ export default function Rutina() {
                 <button type="submit" className="orange-pill-button" onClick={crearRutina}>
                   Crear
                 </button>
-                <button type="submit" className="orange-pill-button" onClick={test}>
+                <button type="submit" className="orange-pill-button" onClick={modificarRutina}>
                   Modificar
                 </button>
-                <button type="submit" className="orange-pill-button">
+                <button type="submit" className="orange-pill-button" onClick={getRutina}>
                   Buscar
                 </button>
                 <button type="submit" className="orange-pill-button">
