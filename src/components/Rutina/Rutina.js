@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Rutina.css";
-import { httpGet, httpPatch, httpDelete } from "../utils/httpFunctions";
+import { httpGet, httpPost, httpPatch, httpDelete } from "../utils/httpFunctions";
 
 export default function Rutina() {
   const [profile, setProfile] = useState({});
@@ -12,24 +12,35 @@ export default function Rutina() {
   };
 
   const handleExercise1Change = (event) => {
-    setRutina({ ...rutina, Exercise1: event.target.value });
+    setRutina({ ...rutina, exercise1: event.target.value });
   };
 
   const handleExercise2Change = (event) => {
-    setRutina({ ...rutina, Exercise2: event.target.value });
+    setRutina({ ...rutina, exercise2: event.target.value });
   };
 
   const handleExercise3Change = (event) => {
-    setRutina({ ...rutina, Exercise3: event.target.value });
+    setRutina({ ...rutina, exercise3: event.target.value });
   };
 
   const handleExercise4Change = (event) => {
-    setRutina({ ...rutina, Exercise4: event.target.value });
+    setRutina({ ...rutina, exercise4: event.target.value });
   };
 
   const handleExercise5Change = (event) => {
-    setRutina({ ...rutina, Exercise5: event.target.value });
+    setRutina({ ...rutina, exercise5: event.target.value });
   };
+
+  const crearRutina = (e) => {
+    e.preventDefault();
+    httpPost('api/rutinas/', {exercise1: rutina.exercise1, exercise2: rutina.exercise2, exercise3: rutina.exercise3, exercise4: rutina.exercise4, exercise5: rutina.exercise5, athlete: rutina.athlete_id}).then((res) => {
+      })
+  };
+
+  const test = (e) => {
+    e.preventDefault();
+    console.log(rutina)
+  }
 
   useEffect(() => {
     httpGet("api/me")
@@ -39,11 +50,10 @@ export default function Rutina() {
           ? httpGet("api/rutinas/?athlete_id=" + profile.id).then((res) =>
               setRutina(res.data)
             )
-          : null
+          : ''
       );
   }, []);
 
-  console.log(rutina);
 
   return (
     <div>
@@ -92,7 +102,7 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise1"
-                  defaultValue={rutina.excercise1}
+                  defaultValue={rutina.exercise1}
                   onChange={handleExercise1Change}
                 />
               </label>
@@ -112,7 +122,7 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise2"
-                  defaultValue={rutina.excercise2}
+                  defaultValue={rutina.exercise2}
                   onChange={handleExercise2Change}
                 />
               </label>
@@ -132,7 +142,7 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise3"
-                  defaultValue={rutina.excercise3}
+                  defaultValue={rutina.exercise3}
                   onChange={handleExercise3Change}
                 />
               </label>
@@ -151,7 +161,7 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise4"
-                  defaultValue={rutina.excercise4}
+                  defaultValue={rutina.exercise4}
                   onChange={handleExercise4Change}
                 />
               </label>
@@ -170,7 +180,7 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise5"
-                  defaultValue={rutina.excercise5}
+                  defaultValue={rutina.exercise5}
                   onChange={handleExercise5Change}
                 />
               </label>
@@ -181,10 +191,10 @@ export default function Rutina() {
           <div className="w-full mb-10 text-center md:w-2/5">
             {profile.is_staff == true ? (
               <div>
-                <button type="submit" className="orange-pill-button">
+                <button type="submit" className="orange-pill-button" onClick={crearRutina}>
                   Crear
                 </button>
-                <button type="submit" className="orange-pill-button">
+                <button type="submit" className="orange-pill-button" onClick={test}>
                   Modificar
                 </button>
                 <button type="submit" className="orange-pill-button">
