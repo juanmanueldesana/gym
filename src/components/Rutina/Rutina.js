@@ -57,9 +57,16 @@ export default function Rutina() {
   const getRutina = (e) => {
     e.preventDefault();
     httpGet("api/rutinas/?athlete_id=" + rutina.athlete_id).then((res) =>
-      setRutina(res.data[0])
-    );
-  };
+      setRutina(res.data.length > 0 ? res.data[0] : {})
+    ).catch((e)=>{
+      console.log(e)
+    })};
+  
+
+  const deleteRutina = (e) => {
+    e.preventDefault();
+    httpDelete("api/rutinas/")
+  }
 
   const test = (e) => {
     e.preventDefault();
@@ -71,7 +78,7 @@ export default function Rutina() {
       setProfile(data);
       if (!data.is_staff)
         httpGet("api/rutinas/?athlete_id=" + data.id).then((res) =>
-          setRutina(res.data[0])
+          setRutina(res.data.length > 0 ? res.data[0] : {})
         );
     });
   }, []);
@@ -105,7 +112,7 @@ export default function Rutina() {
                   name="exercise1"
                   /* defaultValue={profile.is_staff == false ? profile.id : null} */
                   onChange={handleIdChange}
-                  defaultValue={rutina.athlete}
+                  defaultValue={rutina.athlete_id}
                 />
               </label>
             </div>
@@ -234,11 +241,13 @@ export default function Rutina() {
                 >
                   Buscar
                 </button>
-                <button type="submit" className="orange-pill-button">
+                <button type="submit" className="orange-pill-button" onClick={deleteRutina}>
                   Eliminar
                 </button>
               </div>
-            ) : null}
+            ) : <div><button type="submit" className="orange-pill-button" onClick={deleteRutina}>
+            Eliminar
+          </button></div>}
           </div>
         </div>
       </form>
