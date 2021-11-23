@@ -32,7 +32,7 @@ class RutinaViewSet(viewsets.ModelViewSet):
         print(queryset)    
         return queryset
 
-    @action(methods=["GET"], detail=False, url_path='from_athlete/(?P<athlete_id>.+)')
+"""     @action(methods=["GET"], detail=False, url_path='from_athlete/(?P<athlete_id>.+)')
     def from_athlete(self, request, athlete_id):
         try:
             athlete = get_user_model().objects.get(id=athlete_id)
@@ -41,7 +41,7 @@ class RutinaViewSet(viewsets.ModelViewSet):
         rutina = athlete.rutinas.first()
         if rutina:
             return Response(self.serializer_class(rutina).data,status=200)
-        else: return Response(status=404)
+        else: return Response(status=404) """
 
 
 @permission_classes([IsAdminUser])
