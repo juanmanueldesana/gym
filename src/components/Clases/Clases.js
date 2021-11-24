@@ -49,12 +49,12 @@ console.log(clases1);
             </div>
             <div className="all-cards">
                 {
-                    clases1.map((clase)=> {
+                    clases.map((clase)=> {
                         return (
                             <div className={"card-container-custom"}>
                                 <div className="card">
-{/*                                     <img src={clase.foto} className="card-img-top" alt="..."/>
- */}                                    <div className="card-body">
+                                     <img src={clase.foto} className="card-img-top" alt="..."/>
+                                     <div className="card-body">
                                         <h5 className="card-title">{clase.name}</h5>
                                         <p className="card-text">{clase.description}</p>
                                     </div>
