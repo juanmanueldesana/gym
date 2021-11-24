@@ -33,6 +33,11 @@ const handleEmailChange = (event) => {
   setProfile({ ...profile, email: event.target.value })
 };
 
+const cerrarSesion = ()=>{
+  localStorage.clear();
+  window.location.href = "/";
+}
+
   useEffect(() => {
     httpGet("api/me").then(response => setProfile(response.data))
   }, [])
@@ -41,6 +46,8 @@ const handleEmailChange = (event) => {
     <div>
       <h1 className="h1-profile"><a style={{ textDecoration: "none", color: "black" }} href="/Perfil">Perfil</a></h1>
       <h1 className="h1-profile"><a style={{ textDecoration: "none", color: "black" }} href="/Rutina">Rutina</a></h1>
+      {profile.is_staff == true?<h1 className="h1-profile"><a style={{ textDecoration: "none", color: "black" }} href="/Registro">Crear usuario</a></h1>:null}
+      <h1 className="h1-profile"><a onClick={cerrarSesion} style={{ textDecoration: "none", color: "black" }} href="/">Cerrar sesion</a></h1>
       <form className="container-profile">
       <div className="form-group">
         <div className="input-profile">
