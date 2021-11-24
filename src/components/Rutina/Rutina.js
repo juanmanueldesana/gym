@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Rutina.css";
-import { httpGet, httpPost, httpPatch, httpDelete } from "../utils/httpFunctions";
+import {
+  httpGet,
+  httpPost,
+  httpPatch,
+  httpDelete,
+} from "../utils/httpFunctions";
 
 export default function Rutina() {
   const [profile, setProfile] = useState({});
@@ -8,7 +13,8 @@ export default function Rutina() {
   const [rutina, setRutina] = useState({});
 
   const handleIdChange = (event) => {
-    setRutina({ ...rutina, athlete_id: event.target.value });
+    setRutina({ ...rutina, athlete: event.target.value });
+    console.log(rutina.athlete);
   };
 
   const handleExercise1Change = (event) => {
@@ -33,27 +39,54 @@ export default function Rutina() {
 
   const crearRutina = (e) => {
     e.preventDefault();
-    httpPost('api/rutinas/', {exercise1: rutina.exercise1, exercise2: rutina.exercise2, exercise3: rutina.exercise3, exercise4: rutina.exercise4, exercise5: rutina.exercise5, athlete: rutina.athlete_id}).then((res) => {
-      })
+    console.log(rutina)
+    httpPost("api/rutinas/", {
+      exercise1: rutina.exercise1,
+      exercise2: rutina.exercise2,
+      exercise3: rutina.exercise3,
+      exercise4: rutina.exercise4,
+      exercise5: rutina.exercise5,
+      athlete: rutina.athlete,
+    }).then(() => {});
   };
 
-  const test = (e) => {
+  const modificarRutina = (e) => {
     e.preventDefault();
+    console.log(rutina)
+    httpPatch("api/rutinas/" + rutina.id + "/", rutina);
+  };
+
+  const getRutina = (e) => {
+    e?.preventDefault();
+    httpGet("api/rutinas/?athlete=" + rutina.athlete).then((res) =>{
+      console.log(res.data)
+      setRutina(res.data.length > 0 ? res.data[0] : {})}
+      
+    ).catch((e)=>{
+      console.log(e)
+    })};
+  
+
+  const deleteRutina = (e) => {
+    e.preventDefault();
+    httpDelete("api/rutinas/"+rutina.id+'/')
     console.log(rutina)
   }
 
-  useEffect(() => {
-    httpGet("api/me")
-      .then((response) => setProfile(response.data))
-      .then(
-        profile.is_staff != true
-          ? httpGet("api/rutinas/?athlete_id=" + profile.id).then((res) =>
-              setRutina(res.data)
-            )
-          : ''
-      );
-  }, []);
+  const test = (e) => {
+    e.preventDefault();
+    console.log(rutina);
+  };
 
+  useEffect(() => {
+    httpGet("api/me").then(({data}) => {
+      setProfile(data);
+      if (!data.is_staff)
+        httpGet("api/rutinas/?athlete=" + data.id).then((res) =>
+          setRutina(res.data.length > 0 ? res.data[0] : {})
+        );
+    });
+  }, []);
 
   return (
     <div>
@@ -82,8 +115,9 @@ export default function Rutina() {
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise1"
-                  defaultValue={profile.is_staff != true ? profile.id : null}
+                  /* defaultValue={profile.is_staff == false ? profile.id : null} */
                   onChange={handleIdChange}
+                  defaultValue={rutina.athlete}
                 />
               </label>
             </div>
@@ -191,20 +225,34 @@ export default function Rutina() {
           <div className="w-full mb-10 text-center md:w-2/5">
             {profile.is_staff == true ? (
               <div>
-                <button type="submit" className="orange-pill-button" onClick={crearRutina}>
+                <button
+                  type="submit"
+                  className="orange-pill-button"
+                  onClick={crearRutina}
+                >
                   Crear
                 </button>
-                <button type="submit" className="orange-pill-button" onClick={test}>
+                <button
+                  type="submit"
+                  className="orange-pill-button"
+                  onClick={modificarRutina}
+                >
                   Modificar
                 </button>
-                <button type="submit" className="orange-pill-button">
+                <button
+                  type="submit"
+                  className="orange-pill-button"
+                  onClick={getRutina}
+                >
                   Buscar
                 </button>
-                <button type="submit" className="orange-pill-button">
+                <button type="submit" className="orange-pill-button" onClick={deleteRutina}>
                   Eliminar
                 </button>
               </div>
-            ) : null}
+            ) : <div><button type="submit" className="orange-pill-button" onClick={deleteRutina}>
+            Eliminar
+          </button></div>}
           </div>
         </div>
       </form>

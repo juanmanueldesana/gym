@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db.models import query
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework import response
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 # Create your views here.
@@ -23,11 +24,25 @@ class RutinaViewSet(viewsets.ModelViewSet):
     queryset = Rutina.objects.all()
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = self.queryset.all()
         athlete_id = self.request.query_params.get('athlete_id')
         if athlete_id is not None:
             queryset = queryset.filter(athlete_id=athlete_id)
+            
+        print(queryset)    
         return queryset
+
+"""     @action(methods=["GET"], detail=False, url_path='from_athlete/(?P<athlete_id>.+)')
+    def from_athlete(self, request, athlete_id):
+        try:
+            athlete = get_user_model().objects.get(id=athlete_id)
+        except(get_user_model().DoesNotExist): 
+            return Response(status=404)
+        rutina = athlete.rutinas.first()
+        if rutina:
+            return Response(self.serializer_class(rutina).data,status=200)
+        else: return Response(status=404) """
+
 
 @permission_classes([IsAdminUser])
 class RegisterView(generics.CreateAPIView):
