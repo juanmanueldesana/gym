@@ -24,7 +24,7 @@ class RutinaViewSet(viewsets.ModelViewSet):
     queryset = Rutina.objects.all()
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = self.queryset.all()
         athlete_id = self.request.query_params.get('athlete_id')
         if athlete_id is not None:
             queryset = queryset.filter(athlete_id=athlete_id)
