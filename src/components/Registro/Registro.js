@@ -16,6 +16,7 @@ export default function Registro() {
     }).then((res) => {
       history.push("/Perfil");
     });
+    alert("Se creó el usuario con exito")
   };
 
   return (

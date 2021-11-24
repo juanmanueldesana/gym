@@ -6,6 +6,7 @@ import {
   httpPatch,
   httpDelete,
 } from "../utils/httpFunctions";
+import {useHistory} from 'react-router-dom';
 
 export default function Rutina() {
   const [profile, setProfile] = useState({});
@@ -37,6 +38,9 @@ export default function Rutina() {
     setRutina({ ...rutina, exercise5: event.target.value });
   };
 
+  const history = useHistory();
+
+
   const crearRutina = (e) => {
     e.preventDefault();
     console.log(rutina)
@@ -47,13 +51,18 @@ export default function Rutina() {
       exercise4: rutina.exercise4,
       exercise5: rutina.exercise5,
       athlete: rutina.athlete,
-    }).then(() => {});
+    }).then(() => {
+      alert("Se creó la rutina con exito")
+      window.location.reload();
+    });
   };
 
   const modificarRutina = (e) => {
     e.preventDefault();
     console.log(rutina)
     httpPatch("api/rutinas/" + rutina.id + "/", rutina);
+    alert("Se modificó la rutina con exito")
+    window.location.reload();
   };
 
   const getRutina = (e) => {
@@ -71,12 +80,19 @@ export default function Rutina() {
     e.preventDefault();
     httpDelete("api/rutinas/"+rutina.id+'/')
     console.log(rutina)
+    alert("Se eliminó la rutina con exito")
+    window.location.reload();
   }
 
   const test = (e) => {
     e.preventDefault();
     console.log(rutina);
   };
+
+  const cerrarSesion = ()=>{
+    localStorage.clear();
+    window.location.href = "/";
+  }
 
   useEffect(() => {
     httpGet("api/me").then(({data}) => {
@@ -101,6 +117,7 @@ export default function Rutina() {
         </a>
       </h1>
       {profile.is_staff == true?<h1 className="h1-profile"><a style={{ textDecoration: "none", color: "black" }} href="/Registro">Crear usuario</a></h1>:null}
+      <h1 className="h1-profile"><a onClick={cerrarSesion} style={{ textDecoration: "none", color: "red" }} href="/">Cerrar sesion</a></h1>
       <form className="container-profile">
         <div className="form-group">
           <div className="input-profile">
