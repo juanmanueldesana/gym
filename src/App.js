@@ -11,6 +11,7 @@ import Separador from "./components/Separador/Separador";
 import Footer from "./components/Footer/Footer"
 import WapButton from "./components/WapButton/WapButton"
 import AuthRoute from './components/AuthRoute';
+import Registro from "./components/Registro/Registro"
 import './App.css';
 
 export default function App() {
@@ -34,7 +35,14 @@ export default function App() {
         </AuthRoute>
         </Route>
         <Route path="/Rutina">
+        <AuthRoute>
           <Rutina />
+          </AuthRoute>
+        </Route>
+        <Route path="/Registro">
+        <AuthRoute>
+          <Registro/>
+        </AuthRoute>
         </Route>
         <Route path="/">
           <Landing />
