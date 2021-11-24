@@ -11,10 +11,6 @@ const updateUser = ()=> {
     httpPatch("api/meUpdate/", profile)
 }
 
-/* const deleteUser = ()=> {  
-    httpDelete("api/meDelete/")
-} */
-
 const deleteUser = () => {
   httpDelete("api/meDelete/"+profile.id+ "/")
 }
