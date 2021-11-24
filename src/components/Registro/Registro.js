@@ -14,7 +14,6 @@ export default function Registro() {
     e.preventDefault();
     httpPost("api/register/", {username: username,password: password,is_staff: is_staff,
     }).then((res) => {
-      localStorage.setItem("token", res.data.access);
       history.push("/Perfil");
     });
   };
@@ -41,15 +40,12 @@ export default function Registro() {
           placeholder="Contraseña"
           name="password"
         />
-        <div>
-        <label>Es staff?</label>
-        <input value={is_staff} onChange={(e) => setStaff(e.target.value)}
-          id="is_staff"
-          class="form-field"
-          type="checkbox"
-          name="is_staff"
-        />
-        </div>
+          <select id="is_staff" value={is_staff} onChange={(e) => {
+              setStaff(e.target.value)}} name="is_staff">
+          <option selected value="" disabled selected>Tipo de usuario*</option>
+          <option value="false">Atleta</option>
+          <option value="true">Profesor</option>
+        </select>
         <button type="submit" class="form-field form-btn" type="submit">
           Registrar
         </button>

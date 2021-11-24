@@ -100,6 +100,7 @@ export default function Rutina() {
           Rutina
         </a>
       </h1>
+      {profile.is_staff == true?<h1 className="h1-profile"><a style={{ textDecoration: "none", color: "black" }} href="/Registro">Crear usuario</a></h1>:null}
       <form className="container-profile">
         <div className="form-group">
           <div className="input-profile">
