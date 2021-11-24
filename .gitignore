@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 api/__pycache__/models.cpython-38.pyc
 db.sqlite3
+backend/__pycache__/__init__.cpython-39.pyc
+backend/__pycache__/settings.cpython-39.pyc
