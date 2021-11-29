@@ -67,7 +67,7 @@ export default function Rutina() {
 
   const getRutina = (e) => {
     e?.preventDefault();
-    httpGet("api/rutinas/?athlete=" + rutina.athlete).then((res) =>{
+    httpGet("api/rutinas/?athlete_id=" + rutina.athlete).then((res) =>{
       console.log(res.data)
       setRutina(res.data.length > 0 ? res.data[0] : {})}
       
@@ -98,7 +98,7 @@ export default function Rutina() {
     httpGet("api/me").then(({data}) => {
       setProfile(data);
       if (!data.is_staff)
-        httpGet("api/rutinas/?athlete=" + data.id).then((res) =>
+        httpGet("api/rutinas/?athlete_id=" + data.id).then((res) =>
           setRutina(res.data.length > 0 ? res.data[0] : {})
         );
     });
@@ -130,10 +130,10 @@ export default function Rutina() {
                 <span className="input-title">ID Alumno</span>
                 <br></br>
                 <input
+                {...(profile.is_staff === true?{}:{disabled:true})} 
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise1"
-                  /* defaultValue={profile.is_staff == false ? profile.id : null} */
                   onChange={handleIdChange}
                   defaultValue={rutina.athlete}
                 />
@@ -151,6 +151,7 @@ export default function Rutina() {
                 <span className="input-title">EJERCICIO 1</span>
                 <br></br>
                 <input
+                {...(profile.is_staff === true?{}:{disabled:true})} 
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise1"
@@ -171,6 +172,7 @@ export default function Rutina() {
                 <span className="input-title">EJERCICIO 2</span>
                 <br></br>
                 <input
+                {...(profile.is_staff === true?{}:{disabled:true})}
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise2"
@@ -191,6 +193,7 @@ export default function Rutina() {
                 <span className="input-title">EJERCICIO 3</span>
                 <br></br>
                 <input
+                {...(profile.is_staff === true?{}:{disabled:true})}
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise3"
@@ -210,6 +213,7 @@ export default function Rutina() {
                 <span className="input-title">EJERCICIO 4</span>
                 <br></br>
                 <input
+                {...(profile.is_staff === true?{}:{disabled:true})}
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise4"
@@ -229,6 +233,7 @@ export default function Rutina() {
                 <span className="input-title">EJERCICIO 5</span>
                 <br></br>
                 <input
+                {...(profile.is_staff === true?{}:{disabled:true})} 
                   type="text"
                   className="w-full pb-1 pl-1 bg-transparent focus:outline-none focus:shadow-none"
                   name="exercise5"
