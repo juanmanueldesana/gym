@@ -1,15 +1,23 @@
 import { httpGet } from "../utils/httpFunctions";
 import React,  { useEffect, useState } from "react";
+import pesa from "./images/pesa.jpg"
+import libro from "./images/libro.jpg"
+
+
 
 
 export default function Comunidad(props) {
+
 
     const [comunidad, setComunidad] = useState([]);
 
     const getComunidad = ()=> {
         httpGet("api/getUsers/").then(res => {
-            setComunidad(res.data);
-        });
+            setComunidad(res.data)
+        }).catch(err => {
+            localStorage.clear();
+            window.location.reload();
+        });;
     }
 
     const getProfesores = ()=> {
@@ -25,7 +33,7 @@ export default function Comunidad(props) {
     }
 
     useEffect(() => {
-        getComunidad();    
+        getComunidad();   
     }, []);
 
 
@@ -49,9 +57,9 @@ export default function Comunidad(props) {
             <div className="all-cards">
                 {comunidad.map(user => (
                 <div style={{ marginLeft: "25px" }} className="card-container-custom">
-                <div className="card">
-                    <img className="card-img-top" src={user.is_staff==true?"././"} alt="Card image cap" />
-                    <div className="card-body">
+                <div className="card" style={{ display: "flex", alignItems: "center" }} >
+                    <img style={{ width: "150px" }} className="card-img-top" src={user.is_staff==true?libro:pesa} alt="fotoComunidad"/>
+                    <div style={{ textAlign: "center" }} className="card-body">
                         <h5 className="card-title">{user.first_name}</h5>
                         <h5 className="card-text">{user.last_name}</h5>
                         <h5 className="card-text">{user.is_staff==true?"Profesor":"Atleta"}</h5>
