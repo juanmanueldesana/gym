@@ -4,7 +4,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from rest_framework import response
 from rest_framework.decorators import action, api_view, permission_classes
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework.response import Response
 # Create your views here.
 from rest_framework import generics, viewsets
@@ -13,7 +13,7 @@ from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 
 from api.models import Clase, Rutina
-from api.serializers import ClaseSerializer, RutinaSerializer, RegisterSerializer, MeSerializer, MeUpdateSerializer
+from api.serializers import ClaseSerializer, RutinaSerializer, RegisterSerializer, MeSerializer, MeUpdateSerializer, UsersSerializer
 
 class ClaseViewSet(viewsets.ModelViewSet):
     serializer_class = ClaseSerializer
@@ -27,8 +27,7 @@ class RutinaViewSet(viewsets.ModelViewSet):
         queryset = self.queryset.all()
         athlete_id = self.request.query_params.get('athlete_id')
         if athlete_id is not None:
-            queryset = queryset.filter(athlete_id=athlete_id)
-            
+            queryset = queryset.filter(athlete_id=athlete_id)            
         print(queryset)    
         return queryset
 
@@ -43,6 +42,17 @@ class RutinaViewSet(viewsets.ModelViewSet):
             return Response(self.serializer_class(rutina).data,status=200)
         else: return Response(status=404) """
 
+class UsersView(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = UsersSerializer
+
+    def get_queryset(self):
+        if self.request.method == 'GET':
+            queryset = User.objects.all()
+            is_staff = self.request.query_params.get('is_staff')
+            if is_staff is not None:
+                queryset = queryset.filter(is_staff=is_staff)
+            return queryset
 
 @permission_classes([IsAdminUser])
 class RegisterView(generics.CreateAPIView):
@@ -55,6 +65,8 @@ class ListUsers(APIView):
     def get(self, request, format=None):
         usernames = [user.first_name+' '+user.last_name for user in User.objects.filter(is_staff=True).filter(is_superuser=False)]
         return Response(usernames)
+
+
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])

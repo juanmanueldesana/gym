@@ -39,3 +39,8 @@ class MeUpdateSerializer(serializers.ModelSerializer):
         model = get_user_model()
         exclude = ["password", "is_active", "date_joined", "groups", "is_staff", "is_superuser", "last_login", "user_permissions"]
 
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["first_name", "last_name", "is_staff"]
+
