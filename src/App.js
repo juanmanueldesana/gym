@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer"
 import WapButton from "./components/WapButton/WapButton"
 import AuthRoute from './components/AuthRoute';
 import Registro from "./components/Registro/Registro"
+import Comunidad from "./components/Comunidad/Comunidad"
 import './App.css';
 
 export default function App() {
@@ -30,7 +31,7 @@ export default function App() {
           <Staff />
         </Route>
         <Route path="/Comunidad">
-          <Staff />
+          <Comunidad />
         </Route>
         <Route path="/Perfil">
         <AuthRoute>
