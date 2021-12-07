@@ -29,6 +29,9 @@ export default function App() {
         <Route path="/Staff">
           <Staff />
         </Route>
+        <Route path="/Comunidad">
+          <Staff />
+        </Route>
         <Route path="/Perfil">
         <AuthRoute>
           <Perfil />
