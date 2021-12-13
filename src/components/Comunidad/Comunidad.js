@@ -14,10 +14,7 @@ export default function Comunidad(props) {
     const getComunidad = ()=> {
         httpGet("api/getUsers/").then(res => {
             setComunidad(res.data)
-        }).catch(err => {
-            localStorage.clear();
-            window.location.reload();
-        });;
+        });
     }
 
     const getProfesores = ()=> {
